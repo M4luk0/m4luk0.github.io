@@ -7,7 +7,7 @@ In this post I share with you web resources that I use a lot
 
 ## [](#header-2)A little bit of everything
 
-[HackTricks](https://book.hacktricks.xyz/) holaholahola
+[HackTricks](https://book.hacktricks.xyz/)
 
 [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
 
@@ -15,24 +15,44 @@ In this post I share with you web resources that I use a lot
 
 [IPv4Info](http://ipv4info.com/)
 
-[IPinfo](https://ipinfo.io/)
-
-[Robtex](https://www.robtex.com/)
-
 [ViewDNSinfo](https://viewdns.info/)
-
-[Shodan](https://www.shodan.io/)
-
-[GHD](https://www.exploit-db.com/google-hacking-database)
-
-[MACvendors](https://macvendors.com/)
 
 ## [](#header-2)OSINT
 
-[MACvendors](https://macvendors.com/)
+[OSINTframework](https://osintframework.com/)
 
-[MACvendors](https://macvendors.com/)
+## [](#header-2)Exploits
 
-[MACvendors](https://macvendors.com/)
+[ExploitDB](https://www.exploit-db.com/)
 
-[MACvendors](https://macvendors.com/)
+[AttackerKB](https://attackerkb.com/)
+
+## [](#header-2)Active Directory
+
+[WADComs](https://wadcoms.github.io/#)
+
+## [](#header-2)Web
+
+[DNSDumpster](https://dnsdumpster.com/)
+
+[SQLmap sheet](https://www.security-sleuth.com/sleuth-blog/2017/1/3/sqlmap-cheat-sheet)
+
+[JWT](https://jwt.io/#debugger-io)
+
+[Wrappers PHP](https://www.php.net/manual/en/wrappers.php.php)
+
+[Magic Numbers](https://en.wikipedia.org/wiki/List_of_file_signatures)
+
+## [](#header-2)Privesc
+
+[GTFOBins](https://gtfobins.github.io/)
+
+[LOLBAS](https://lolbas-project.github.io/#)
+
+## [](#header-2)Cripto
+
+[Cyberchef](https://gchq.github.io/CyberChef/)
+
+[dCode](https://www.dcode.fr/)
+
+[Hashcat hashes](https://hashcat.net/wiki/doku.php?id=example_hashes)
