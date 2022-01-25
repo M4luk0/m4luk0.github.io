@@ -15,6 +15,8 @@ In this post I share with you web resources that I use a lot
 
 [IPv4Info](http://ipv4info.com/) Info about IPs, ranges, etc.
 
+[DNSDumpster](https://dnsdumpster.com/) dns recon & research, find & lookup dns records.
+
 [ViewDNSinfo](https://viewdns.info/) Online tool with many options such as whois, nslookup, etc.
 
 ## [](#header-2)OSINT
@@ -32,8 +34,6 @@ In this post I share with you web resources that I use a lot
 [WADComs](https://wadcoms.github.io/#) Use of AD tools according to the information you have and the stage you are in.
 
 ## [](#header-2)Web
-
-[DNSDumpster](https://dnsdumpster.com/) dns recon & research, find & lookup dns records.
 
 [SQLmap sheet](https://www.security-sleuth.com/sleuth-blog/2017/1/3/sqlmap-cheat-sheet) Sheet of sqlmap.
 
