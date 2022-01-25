@@ -3,6 +3,8 @@ title: Hacking Resources
 published: true
 ---
 
+In this post I share with you web resources that I use a lot
+
 ## [](#header-2)A little bit of everything
 
 [HackTricks](https://book.hacktricks.xyz/) holaholahola
