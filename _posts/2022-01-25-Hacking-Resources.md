@@ -13,14 +13,24 @@ published: true
 
 [IPv4Info](http://ipv4info.com/)
 
-[HackTricks](https://book.hacktricks.xyz/)
+[IPinfo](https://ipinfo.io/)
 
-[HackTricks](https://book.hacktricks.xyz/)
+[Robtex](https://www.robtex.com/)
 
-[HackTricks](https://book.hacktricks.xyz/)
+[ViewDNSinfo](https://viewdns.info/)
 
-[HackTricks](https://book.hacktricks.xyz/)
+[Shodan](https://www.shodan.io/)
 
-[HackTricks](https://book.hacktricks.xyz/)
+[GHD](https://www.exploit-db.com/google-hacking-database)
 
-[HackTricks](https://book.hacktricks.xyz/)
+[MACvendors](https://macvendors.com/)
+
+## [](#header-2)OSINT
+
+[MACvendors](https://macvendors.com/)
+
+[MACvendors](https://macvendors.com/)
+
+[MACvendors](https://macvendors.com/)
+
+[MACvendors](https://macvendors.com/)
