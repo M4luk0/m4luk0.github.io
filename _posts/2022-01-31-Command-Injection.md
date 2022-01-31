@@ -60,11 +60,22 @@ Before moving on to the next section I will leave you with a table of useful com
 
 ## [](#header-2)How to fix it
 
+The best way to fix this is for the app not to execute system commands, there are other ways to implement the functionality we want through APIs.
 
+In case we can't do without this function we can:
+* Whitelist of allowed values.
+* Validate only the values we need, i.e., if it is a ping, only allow numbers.
 
 ## [](#header-2)References
 
+https://portswigger.net/web-security/os-command-injection
 
+https://book.hacktricks.xyz/pentesting-web/command-injection
+
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection
 
 ## [](#header-2)Practice
 
+https://portswigger.net/web-security/os-command-injection
+
+https://www.root-me.org/es/Desafios/Web-Servidor/Command-injection-Filter-bypass
