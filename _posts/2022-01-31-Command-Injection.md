@@ -23,3 +23,10 @@ Unix Only:
 * Newline (0x0a or \n)
 * \` injected command \`
 * $( injected command )
+
+| Unix and Windows | Unix Only              |
+|:-----------------|:-----------------------|
+| &                | ;                      |
+| &&               | Newline (0x0a or \n)   |
+| \|               | \` injected command \` |
+| \|\|             | $( injected command )  |
