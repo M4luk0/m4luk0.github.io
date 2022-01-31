@@ -3,7 +3,7 @@ title: Command Injection
 published: true
 ---
 
-Hello everyone, today I start a series of blogs where I will explain web vulnerabilities, how to exploit them and I will leave references where to get more information and practice.
+Hello everyone, today I start a series of blogs where I will explain web vulnerabilities, how to exploit them, fix them and I will leave references where to get more information and practice.
 
 ## [](#header-2)Command Injection
 
