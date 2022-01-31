@@ -15,5 +15,5 @@ It takes advantage of the concatenation of commands, depending on the operating 
 |:-----------------|:----------------------|
 | &                | ;                     |
 | &&               | Newline (0x0a or \n)  |
-| "|"              | ` injected command `  |
-| "||"             | $( injected command ) |
+| |                | ` injected command `  |
+| ||               | $( injected command ) |
