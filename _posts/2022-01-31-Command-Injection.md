@@ -48,7 +48,15 @@ We can see that it is vulnerable, from this point we can do reverse shells, etc 
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Command_Injection/8.png)
 
+Before moving on to the next section I will leave you with a table of useful commands for this vulnerability:
 
+| Purpose of command    | Linux            | Windows       |
+|:----------------------|:-----------------|:--------------|
+| Name of current user  | whoami           | whoami        |
+| Operating system      | uname -a         | ver           |
+| Network configuration | ifconfig or ip a | ipconfig /all |
+| Network connections   | netstat -an      | netstat -an   |
+| Running processes     | ps -ef           | tasklist      |
 
 ## [](#header-2)How to fix it
 
