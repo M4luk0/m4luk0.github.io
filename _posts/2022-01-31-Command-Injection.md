@@ -11,6 +11,13 @@ Command injection is a vulnerability that allows the attacker to execute OS comm
 
 It takes advantage of the concatenation of commands, depending on the operating system will be one or the other, here is a table:
 
+Unix and Windows:
+
+* &
+* &&
+* |
+* ||
+
 | Unix and Windows | Unix Only             |
 |:-----------------|:----------------------|
 | &                | ;                     |
