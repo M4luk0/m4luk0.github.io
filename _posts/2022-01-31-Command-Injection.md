@@ -11,12 +11,21 @@ Command injection is a vulnerability that allows the attacker to execute OS comm
 
 It takes advantage of the concatenation of commands, depending on the operating system will be one or the other, here is a table:
 
-| Unix and Windows | Unix Only              |
-|:-----------------|:-----------------------|
-| &                | ;                      |
-| &&               | Newline (0x0a or \n)   |
-| \|               | \` injected command \` |
-| \|\|             | $( injected command )  |
+| Unix and Windows                                    | Unix Only                                           |
+|:----------------------------------------------------|:----------------------------------------------------|
+| & (Executes all commands regardless                 | ; (Executes all commands regardless                 |
+|    of whether they were performed correctly or not) |    of whether they were performed correctly or not) |
+| && (Execute the second command if                   |                                                     |
+|     the first command was executed correctly.)      | Newline (0x0a or \n)                                |
+| \| (Pipe, it takes the output of the first          | \` injected command \`                              |
+|     command and passes it to the input of the       |                                                     |
+|     second, but if the second command does not      |                                                     |
+|     take input it executes it anyway although it    |                                                     |
+|     does not display it.)                           |                                                     |
+| \|\| (Executes either the first command or the      | $ ( injected command )                              |
+|       second, i.e., if the first command is not     |                                                     |
+|       executed correctly, it will execute the       |                                                     |
+|       second command.)                              |                                                     |
 
 ## [](#header-2)PoC
 
