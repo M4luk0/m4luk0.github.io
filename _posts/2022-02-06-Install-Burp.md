@@ -17,7 +17,6 @@ sudo apt install default-jre
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Burp_install/1.png)
 
-https://portswigger.net/burp/releases/professional-community-2021-12-1?requestededition=community
 To install [Burp](https://portswigger.net/burp/releases/professional-community-2021-12-1?requestededition=community) go to their website and download the one that suits us with our pc.
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Burp_install/2.png)
