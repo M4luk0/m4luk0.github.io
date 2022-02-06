@@ -1,5 +1,5 @@
 ---
-title: Command Injection
+title: File Inclusion
 published: true
 ---
 
