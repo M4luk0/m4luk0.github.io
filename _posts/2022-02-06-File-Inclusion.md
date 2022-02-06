@@ -19,17 +19,17 @@ First, go to "DVWA Security" and set the difficulty to low.
 
 After that, go to file inclusion and we can start.
 
-IMAGE
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/File_Inclusion/1.png)
 
 We see that there are 3 files, let's click on one and look at the url.
 
-IMAGE
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/File_Inclusion/2.png)
 
 Now, let's try to read /etc/passwd like this.
 
-IMAGE
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/File_Inclusion/3.png)
 
-IMAGE
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/File_Inclusion/4.png)
 
 Why is it read? easy, what we are doing is going back directories with ../ and then we only have to go to the place where the file is, in this case /etc/passwd; you have to put many ../ because even if it reaches the root directory it will not fail or go further back since it is the furthest back directory; so, the more ../ the better.
 
@@ -51,20 +51,20 @@ Once the reverse is ready, we must make a server in the directory where we have 
 python3 -m http.server
 ```
 
-IMAGE
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/File_Inclusion/5.png)
 
 Now we are listening on the port indicated in the reverse.
 
 ```shell
 nc -lvp PORT
 ```
-IMAGE 8
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/File_Inclusion/8.png)
 
 Finally, we go to the web, put our web with the file in the url and execute.
 
-IMAGE
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/File_Inclusion/6.png)
 
-IMAGE
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/File_Inclusion/7.png)
 
 And now that you have read our reverse and gained access to the system, the remote mode also has filters and bypasses but we will not deal with them here.
 
