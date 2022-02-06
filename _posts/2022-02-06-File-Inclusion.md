@@ -3,7 +3,7 @@ title: File Inclusion
 published: true
 ---
 
-## [](#header-2)What is
+## [](#header-2)What is it?
 
 File Inclusion is a vulnerability with two variants, local and remote, the local one allows the attacker to read files from the system and the remote one allows the attacker to read files from the internet, we will see the usefulness of the latter later.
 
