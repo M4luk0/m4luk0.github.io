@@ -1,5 +1,5 @@
 ---
-title: Command Injection
+title: Install Burp Suite Debian
 published: true
 ---
 
