@@ -76,12 +76,12 @@ After receiving the file to be read, let the application make sure that the file
 
 ## [](#header-2)References
 
-https://portswigger.net/web-security/file-path-traversal
+[https://portswigger.net/web-security/file-path-traversal](https://portswigger.net/web-security/file-path-traversal)
 
-https://book.hacktricks.xyz/pentesting-web/file-inclusion
+[https://book.hacktricks.xyz/pentesting-web/file-inclusion](https://book.hacktricks.xyz/pentesting-web/file-inclusion)
 
-https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
+[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion)
 
 ## [](#header-2)Practice
 
-https://portswigger.net/web-security/file-path-traversal
+[https://portswigger.net/web-security/file-path-traversal](https://portswigger.net/web-security/file-path-traversal)
