@@ -1,5 +1,5 @@
 ---
-title: Install Burp Suite Debian
+title: How to install BurpSuite in Debian
 published: true
 ---
 
