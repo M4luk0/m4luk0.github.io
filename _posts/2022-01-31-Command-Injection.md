@@ -16,7 +16,7 @@ It takes advantage of the concatenation of commands, depending on the operating 
 | & (Executes all commands regardless                 | ; (Executes all commands regardless                 |
 |    of whether they were performed correctly or not) |    of whether they were performed correctly or not) |
 |                                                     |                                                     |
-| && (Execute the second command if                   |  Newline (0x0a or \n)                               |
+| && (Execute the second command if                   |  0x0a or \n (Newline)                               |
 |     the first command was executed correctly.)      |                                                     |
 |                                                     |                                                     |
 | \| (Pipe, it takes the output of the first          | \` injected command \`                              |
