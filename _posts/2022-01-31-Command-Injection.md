@@ -80,14 +80,14 @@ In case we can't do without this function we can:
 
 ## [](#header-2)References
 
-https://portswigger.net/web-security/os-command-injection
+[https://portswigger.net/web-security/os-command-injection](https://portswigger.net/web-security/os-command-injection)
 
-https://book.hacktricks.xyz/pentesting-web/command-injection
+[https://book.hacktricks.xyz/pentesting-web/command-injection](https://book.hacktricks.xyz/pentesting-web/command-injection)
 
-https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection
+[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection)
 
 ## [](#header-2)Practice
 
-https://portswigger.net/web-security/os-command-injection
+[https://portswigger.net/web-security/os-command-injection](https://portswigger.net/web-security/os-command-injection)
 
-https://www.root-me.org/es/Desafios/Web-Servidor/Command-injection-Filter-bypass
+[https://www.root-me.org/es/Desafios/Web-Servidor/Command-injection-Filter-bypass](https://www.root-me.org/es/Desafios/Web-Servidor/Command-injection-Filter-bypass)
