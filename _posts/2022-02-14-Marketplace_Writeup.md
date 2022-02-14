@@ -1,5 +1,5 @@
 ---
-title: Marketplace tryhackme writeup
+title: Marketplace Tryhackme Writeup
 published: true
 ---
 
@@ -25,7 +25,7 @@ With -sC we indicate that we want to run the default nmap scripts and -sV to get
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/escaneo_2.png)
 
-We see that we get the robots.txt with /adminm then we will enter
+We see that we get the robots.txt with /admin then we will enter
 
 We investigate ports 80 and 32768 and go to exactly the same web, so we will skip port 32768.
 
