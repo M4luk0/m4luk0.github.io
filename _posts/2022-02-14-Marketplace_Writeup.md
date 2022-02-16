@@ -57,7 +57,7 @@ When reporting we get a message that the admin has checked the product; we have 
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/new_listing.png)
 
-Let's check if the creation of a product has xss and we could try to steal cookies from the admin when checking a report
+Let's check if the creation of a product has xss and we could try to steal cookies from the admin when checking a report; xss is a vulnerability that allows us to execute javascript code, I will do a blog explaining it in depth soon.
 
 ```shell
 <script>alert(1)</script>
@@ -96,7 +96,7 @@ We are going to enter in some user that we get.
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/admin_user_1.png)
 
-If we see the url we can try a sqli.
+If we see the url we can try a sqli; SQLi is a vulnerability that allows us to perform sql queries through the web to obtain information, I will upload a blog to explain it deeply in a while.
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/marketplace_writeup/prueba_sqli.png)
 
