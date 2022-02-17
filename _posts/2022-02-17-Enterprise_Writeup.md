@@ -50,9 +50,12 @@ It has a repository, if we look at the [history](https://github.com/Nik-enterpri
 With the information we have and after listing several services with that name and password, we are going to use the impacket module GetUsersSPNs
 
 This module will try to find Service Principal Names that are associated with normal user account.
-#   Since normal account's password tend to be shorter than machine accounts, and knowing that a TGS request
-#   will encrypt the ticket with the account the SPN is running under, this could be used for an offline
-#   bruteforcing attack of the SPNs account NTLM hash if we can gather valid TGS for those SPNs.
+
+Since normal account's password tend to be shorter than machine accounts, and knowing that a TGS request
+
+will encrypt the ticket with the account the SPN is running under, this could be used for an offline
+
+bruteforcing attack of the SPNs account NTLM hash if we can gather valid TGS for those SPNs.
 
 ```shell
 GetUserSPNs.py lab.enterprise.thm/nik:ToastyBoi!
