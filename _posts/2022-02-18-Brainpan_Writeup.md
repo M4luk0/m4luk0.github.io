@@ -65,3 +65,32 @@ If the previous commands were successful, it should look like this
 
 FOTO
 
+Now hit File->Open and select the vulnerable program
+
+FOTO
+
+FOTO
+
+Click two times on the Run icon to open the program
+
+FOTO
+
+FOTO
+
+Perfect, let's start with the attack, first we must find out how many characters we have to put to overflow the stack; to do this, without leaving the log we put the following command:
+
+```shell
+mona.mona("pattern_create 1000")
+```
+
+FOTO
+
+Copy the output of the command and paste it into a .txt file
+
+FOTO
+
+Now let's start the script to do our local testing:
+
+```python
+
+```
