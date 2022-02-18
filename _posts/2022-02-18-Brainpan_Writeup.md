@@ -43,29 +43,21 @@ Let's check which architecture it is to open it with x32 or x64
 
 FOTO 6
 
-Ok, looks like the 9999 port binary to exploit it locally before going to the app; let's download it and exploit it on windows with [x64dbg](https://x64dbg.com/), by the way, I have several [demos](https://github.com/therealdreg/x64dbg-exploiting) made in the official repo.
+Ok, looks like the 9999 port binary to exploit it locally before going to the app; let's download it and exploit it on windows with [x64dbg](https://github.com/therealdreg/x64dbg-exploiting/releases/download/1.1/x64dbg-exploitingv1.1.zip), by the way, I have several [demos](https://github.com/therealdreg/x64dbg-exploiting) made in the official repo.
 
-Before we start using x32dbg let's configure a couple of things.
+To install the x64dbg with plugins and so on we have to follow the [instructions](https://github.com/therealdreg/x64dbg-exploiting) of the official repo.
 
-
+FOTO 7-11
 
 Make sure to create the logs folder inside C:
 
-FOTO
+FOTO 5
 
-Once opened we will have to configure mona, for it, we go to log in x32dbg and introduce these commands:
+To configure the logs folder we have to put the following:
 
 ```shell
-import mona
-mona.mona("help")
 mona.mona("config -set workingfolder c:\\logs\\%p")
 ```
-
-FOTO
-
-FOTO
-
-FOTO
 
 FOTO
 
